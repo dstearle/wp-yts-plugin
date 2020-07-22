@@ -8,6 +8,10 @@
 
         // Add Main JS
         wp_enqueue_script('yts-main-script', plugins_url() . '/youtubesubs/js/main.js');
+
+        // Add Google script
+        wp_register_script('google', 'https://apis.google.com/js/platform.js');
+        wp_enqueue_script('google');
         
     }
 
