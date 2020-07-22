@@ -12,3 +12,6 @@ Author URI: https://dstearle.com
 if(!defined('ABSPATH')){
     exit;
 }
+
+// Load Scripts
+require_once(plugin_dir_path(__FILE__).'/includes/youtubesubs-scripts.php');

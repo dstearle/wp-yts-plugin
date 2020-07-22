@@ -11,4 +11,6 @@
         
     }
 
+    add_action('wp_enqueue_scripts', 'yts_add_scripts');
+
 ?>
