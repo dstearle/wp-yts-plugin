@@ -31,7 +31,7 @@ class Youtube_Subs_Widget extends WP_Widget {
         }
         
         // Widget content output
-		echo '<div class="g-ytsubscribe" data-channel="'.$instance['channel'].'" data-layout="'.$instance['layout'].'" data-count="default"></div>';
+		echo '<div class="g-ytsubscribe" data-channel="'.$instance['channel'].'" data-layout="'.$instance['layout'].'" data-count="'.$instance['count'].'"></div>';
 		echo $args['after_widget']; // Whatever you want to display after widget (<div>, etc.)
 	}
 
@@ -48,6 +48,8 @@ class Youtube_Subs_Widget extends WP_Widget {
         $channel = ! empty( $instance['channel'] ) ? $instance['channel'] : esc_html__( 'techguyweb', 'yts_domain' );
 
         $layout = ! empty( $instance['layout'] ) ? $instance['layout'] : esc_html__( 'default', 'yts_domain' );
+
+        $count = ! empty( $instance['count'] ) ? $instance['count'] : esc_html__( 'default', 'yts_domain' );
 
 		?>
 
@@ -106,6 +108,29 @@ class Youtube_Subs_Widget extends WP_Widget {
             
             </p>
 
+            <!-- Count -->
+            <p>
+
+                <label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>">
+                    <?php esc_attr_e( 'count:', 'yts_domain' ); ?>
+                </label> 
+
+                <select 
+                    class="widefat" 
+                    id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" 
+                    name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" 
+                >
+
+                    <!-- Default -->
+                    <option value="default" <?php echo ($count == 'default') ? 'selected' : ''; ?>>Default</option>
+
+                    <!-- Hidden -->
+                    <option value="hidden" <?php echo ($laycountout == 'hidden') ? 'selected' : ''; ?>>Hidden</option>
+
+                </select>
+            
+            </p>
+
 		<?php 
 	}
 
@@ -127,6 +152,8 @@ class Youtube_Subs_Widget extends WP_Widget {
         $instance['channel'] = ( ! empty( $new_instance['channel'] ) ) ? sanitize_text_field( $new_instance['channel'] ) : '';
 
         $instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? sanitize_text_field( $new_instance['layout'] ) : '';
+
+        $instance['count'] = ( ! empty( $new_instance['count'] ) ) ? sanitize_text_field( $new_instance['count'] ) : '';
 
 		return $instance;
 	}
